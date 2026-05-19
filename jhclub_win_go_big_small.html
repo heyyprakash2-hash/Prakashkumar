@@ -1,0 +1,572 @@
+<html class="dark" lang="en"><head></head><body class="bg-background text-on-background min-h-screen font-body-md selection:bg-primary-container selection:text-on-primary-container">```html
+
+
+
+    <meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>JHClub | Games Library</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&amp;family=Hanken+Grotesk:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .game-card:hover .play-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .game-card .play-overlay {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #131313;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #353535;
+        }
+        .wingo-gradient-big {
+            background: linear-gradient(135deg, #f59e0b 0%, #78350f 100%);
+        }
+        .wingo-gradient-small {
+            background: linear-gradient(135deg, #3b82f6 0%, #1e3a8a 100%);
+        }
+        .wingo-number-btn {
+            transition: all 0.2s ease;
+        }
+        .wingo-number-btn:hover {
+            transform: scale(1.1);
+            background-color: #ffb3ad;
+            color: #410003;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-tint": "#ffb3ad",
+                    "inverse-primary": "#c0001a",
+                    "surface-container-low": "#1b1b1b",
+                    "on-secondary-fixed-variant": "#454747",
+                    "on-background": "#e2e2e2",
+                    "tertiary-fixed": "#d1e4ff",
+                    "on-surface-variant": "#e7bdb9",
+                    "on-surface": "#e2e2e2",
+                    "on-tertiary-container": "#d8e8ff",
+                    "surface-dim": "#131313",
+                    "on-primary-fixed-variant": "#930011",
+                    "on-primary-container": "#ffdfdc",
+                    "on-tertiary": "#003258",
+                    "on-error-container": "#ffdad6",
+                    "background": "#131313",
+                    "on-secondary": "#2f3131",
+                    "tertiary": "#9ecaff",
+                    "surface-container": "#1f1f1f",
+                    "on-secondary-container": "#b4b5b5",
+                    "tertiary-fixed-dim": "#9ecaff",
+                    "surface-container-lowest": "#0e0e0e",
+                    "outline": "#ae8884",
+                    "primary": "#ffb3ad",
+                    "surface-container-high": "#2a2a2a",
+                    "error-container": "#93000a",
+                    "secondary-fixed-dim": "#c6c6c7",
+                    "secondary-container": "#454747",
+                    "on-error": "#690005",
+                    "on-primary-fixed": "#410003",
+                    "secondary": "#c6c6c7",
+                    "primary-fixed-dim": "#ffb3ad",
+                    "surface-variant": "#353535",
+                    "surface-container-highest": "#353535",
+                    "inverse-on-surface": "#303030",
+                    "primary-fixed": "#ffdad6",
+                    "on-primary": "#680009",
+                    "outline-variant": "#5d3f3c",
+                    "tertiary-container": "#006ab2",
+                    "primary-container": "#d0001d",
+                    "inverse-surface": "#e2e2e2",
+                    "on-tertiary-fixed-variant": "#00497d",
+                    "on-secondary-fixed": "#1a1c1c",
+                    "on-tertiary-fixed": "#001d36",
+                    "surface-bright": "#393939",
+                    "surface": "#131313",
+                    "secondary-fixed": "#e2e2e2",
+                    "error": "#ffb4ab"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit": "8px",
+                    "margin-desktop": "64px",
+                    "gutter": "24px",
+                    "stack-sm": "8px",
+                    "stack-xl": "64px",
+                    "stack-lg": "32px",
+                    "stack-md": "16px",
+                    "container-max": "1280px",
+                    "margin-mobile": "20px"
+            },
+            "fontFamily": {
+                    "headline-xl": ["Playfair Display"],
+                    "display-lg": ["Playfair Display"],
+                    "headline-xl-mobile": ["Playfair Display"],
+                    "display-lg-mobile": ["Playfair Display"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "body-md": ["Hanken Grotesk"],
+                    "headline-md": ["Playfair Display"],
+                    "label-bold": ["Hanken Grotesk"],
+                    "label-sm": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "headline-xl": ["40px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "display-lg": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "900"}],
+                    "headline-xl-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "display-lg-mobile": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "900"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                    "label-bold": ["14px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "1", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<!-- Top Navigation -->
+<nav class="w-full top-0 sticky z-50 bg-background border-b border-surface-variant">
+<div class="max-w-container-max mx-auto px-margin-desktop flex justify-between items-center h-20">
+<div class="font-display-lg text-display-lg uppercase tracking-tighter text-primary">JHCLUB</div>
+<div class="hidden md:flex gap-gutter items-center">
+<a class="font-label-bold text-label-bold text-on-background hover:text-primary transition-colors duration-200" href="#">Home</a>
+<a class="font-label-bold text-label-bold text-primary border-b-2 border-primary pb-1 transition-colors duration-200" href="#">Games</a>
+<a class="font-label-bold text-label-bold text-on-background hover:text-primary transition-colors duration-200" href="#">Rewards</a>
+<a class="font-label-bold text-label-bold text-on-background hover:text-primary transition-colors duration-200" href="#">Support</a>
+</div>
+<div class="flex items-center gap-stack-md">
+<button class="font-label-bold text-label-bold text-on-background px-stack-md py-stack-sm hover:text-primary transition-colors duration-200">Login</button>
+<button class="bg-primary-container text-on-primary-container font-label-bold text-label-bold px-stack-lg py-stack-sm uppercase tracking-wider scale-105 active:scale-95 transition-transform">Register</button>
+</div>
+</div>
+</nav>
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-xl">
+<!-- Search and Filters Section -->
+<section class="mb-stack-xl">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-stack-lg">
+<div class="flex-1 max-w-2xl">
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-stack-md">THE LOBBY</h1>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-stack-md top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full bg-surface-container-lowest border border-surface-variant focus:border-primary px-12 py-stack-md text-body-lg font-body-lg outline-none transition-all placeholder:text-surface-variant" placeholder="Search for your next win..." type="text"/>
+</div>
+</div>
+<div class="flex flex-wrap gap-stack-sm">
+<button class="px-stack-lg py-stack-sm bg-primary text-on-primary font-label-bold text-label-bold uppercase tracking-widest border border-primary">All Games</button>
+<button class="px-stack-lg py-stack-sm bg-transparent text-on-surface-variant font-label-bold text-label-bold uppercase tracking-widest border border-surface-variant hover:border-primary hover:text-primary transition-all">Hot Slots</button>
+<button class="px-stack-lg py-stack-sm bg-transparent text-on-surface-variant font-label-bold text-label-bold uppercase tracking-widest border border-surface-variant hover:border-primary hover:text-primary transition-all">Live Casino</button>
+<button class="px-stack-lg py-stack-sm bg-transparent text-on-surface-variant font-label-bold text-label-bold uppercase tracking-widest border border-surface-variant hover:border-primary hover:text-primary transition-all">Table Games</button>
+</div>
+</div>
+</section>
+<!-- Hot Slots Bento Grid -->
+<section class="mb-stack-xl">
+<div class="flex items-center justify-between mb-stack-lg">
+<h2 class="font-headline-xl text-headline-xl-mobile md:text-headline-xl flex items-center gap-stack-sm">
+<span class="material-symbols-outlined text-primary" data-weight="fill">local_fire_department</span>
+                    HOT SLOTS
+                </h2>
+<a class="font-label-bold text-label-bold text-on-surface-variant hover:text-primary transition-colors flex items-center gap-stack-sm" href="#">
+                    VIEW ALL <span class="material-symbols-outlined text-label-bold">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-gutter">
+<!-- Large Featured Card -->
+<div class="col-span-2 row-span-2 group game-card relative overflow-hidden bg-surface-container border border-surface-variant hover:border-primary transition-all duration-300">
+<img alt="Featured Slot" class="w-full h-full object-cover grayscale-[0.5] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" data-alt="A cinematic close-up of a high-tech mechanical slot machine in a dark, neon-lit casino setting. Intense red laser beams cut through a hazy atmosphere, reflecting off polished chrome and obsidian surfaces. The lighting is dramatic and high-contrast, emphasizing a professional and competitive gaming environment. The primary colors are deep blacks and vibrant reds." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9fX6NW6U1l4A0Ne85FrEQwJMnlqCylqAO9bQAQVxiCtLA3LhqvzyBU--oEf5TO2xVPAKx3qyouHd1yCJ6LW4Gvd1dtlla1QDHOJ3N1kKsU6hPCCi9jtWtBzQgZIfbaZYaMOA0EE66lfdRF32zTBQSvTpbGfeUCs-mVgP-CJhlv0nNslVZCRjyrNCS8Rw0iHlHmCGNboThQPcFEzUnpNX_onk4YTzLdC05XZXJpnyFYNioxmdTDEW6oNyHgvB-abGZ47VG2IcNlKPF"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
+<div class="absolute top-4 left-4 flex flex-col gap-2">
+<span class="bg-primary text-on-primary font-label-bold text-label-sm px-2 py-1 inline-block">HOT</span>
+<span class="bg-black/80 text-white font-label-bold text-label-sm px-2 py-1 inline-block backdrop-blur-sm border border-white/20">JACKPOT: $54,290</span>
+</div>
+<div class="absolute bottom-6 left-6 right-6">
+<h3 class="font-headline-md text-headline-md text-white mb-2">NEON VORTEX</h3>
+<div class="play-overlay">
+<button class="w-full bg-primary-container text-on-primary-container font-label-bold text-label-bold py-stack-md uppercase tracking-widest hover:bg-inverse-primary transition-colors">PLAY NOW</button>
+</div>
+</div>
+</div>
+<!-- Regular Slot Cards -->
+<div class="group game-card relative overflow-hidden bg-surface-container border border-surface-variant hover:border-primary transition-all duration-300">
+<div class="aspect-[3/4] overflow-hidden">
+<img alt="Slot Game" class="w-full h-full object-cover grayscale-[0.8] group-hover:grayscale-0 group-hover:scale-110 transition-all duration-500" data-alt="Dynamic concept art for a digital slot game featuring stylized lightning and electricity against a pitch-black background. Sharp, high-contrast graphics with primary red highlights create a sense of high energy and urgent movement. The visual style is neo-brutalist and clean, designed for a professional gaming platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6jUtgtcQr9LQ_9DozsJLXsv2a8KP2SIC34BSyKYS03O4Azvdkfb1tGGTENE1ytMvVHcPG_Nqf8upvPENBqA9wAqIrxwJZTFRiygWCERz8aPyjblYjCndUuR-_mwhen-R_MyIoHuSj16cpN6HQK2eveHWLRQt0rpNo680hVbBs6TSxfUeJItWOC9EEeFuvZi2K_u06TBr1yoW8Hu5XYxMSpoa5Jqa8aZEfoKGY81vdynZ_X1Aue7MJxlfv_MTidXd9tnAXgWYA-X5R"/>
+</div>
+<div class="p-stack-md">
+<p class="font-label-bold text-label-sm text-surface-variant mb-1">MEGAWAYS</p>
+<h4 class="font-label-bold text-label-bold text-on-surface">TITAN STRIKE</h4>
+</div>
+<div class="absolute inset-0 bg-black/60 flex items-center justify-center play-overlay opacity-0">
+<button class="bg-primary text-on-primary font-label-bold text-label-bold px-stack-lg py-stack-sm scale-90 group-hover:scale-100 transition-transform">PLAY</button>
+</div>
+</div>
+<div class="group game-card relative overflow-hidden bg-surface-container border border-surface-variant hover:border-primary transition-all duration-300">
+<div class="aspect-[3/4] overflow-hidden">
+<img alt="Slot Game" class="w-full h-full object-cover grayscale-[0.8] group-hover:grayscale-0 group-hover:scale-110 transition-all duration-500" data-alt="Minimalist digital illustration of a stylized game interface with golden abstract shapes and geometric patterns. High-contrast lighting against a deep black background with bold red accents. Professional and sleek aesthetic with sharp edges and premium feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwQhSjjAnCBIz8smZ3dJJtJGbocl6ve3YS9O3gdBX2NUU0vIydEPiA-NAE_r1GKxQu53DslSi1GiU8RGkLpkQv5PyLI8VaWvvvnBWfhdkX4gxpof33t-ddVAfoRx9MO7_fdQlMXvBa9ly4VPHu4BaZYQe5LDib-xTbXGjxZTiNoeGtiCKgmyOxFU2OSAIk5FVdaBKbbhvz1LjHHSWA7w-L56Sf1nI9z7LcpjlfY1EdblDRxA_k4xS6eY9Dq3FgqeuA6SwptqNtDs2T"/>
+</div>
+<div class="p-stack-md">
+<p class="font-label-bold text-label-sm text-surface-variant mb-1">JACKPOT</p>
+<h4 class="font-label-bold text-label-bold text-on-surface">GOLDEN VAULT</h4>
+</div>
+<div class="absolute inset-0 bg-black/60 flex items-center justify-center play-overlay opacity-0">
+<button class="bg-primary text-on-primary font-label-bold text-label-bold px-stack-lg py-stack-sm scale-90 group-hover:scale-100 transition-transform">PLAY</button>
+</div>
+</div>
+<!-- More grid items for layout -->
+<div class="group game-card relative overflow-hidden bg-surface-container border border-surface-variant hover:border-primary transition-all duration-300">
+<div class="aspect-[3/4] overflow-hidden">
+<img alt="Slot Game" class="w-full h-full object-cover grayscale-[0.8] group-hover:grayscale-0 group-hover:scale-110 transition-all duration-500" data-alt="High-impact graphic of abstract digital waves in vibrant primary red and charcoal gray. The background is pure black, creating intense contrast. Professional, modern, and energetic visual style suitable for a premium casino games library." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxqxgaXomcDX_x_uiXcLxIiI2Q6OsbTxqLiYCAL3btRcpQlMB-9Qkr2Z0YXm98oM06zZuy3JHSl3o74dnjwqWhDYlm2jP1ggl7gl5nK0Z2-xluuKuMWjCfv3i6rEfxSbLAZhRe6yJph7f0IyFGsAj3Y8dk8oEebeLJ0ee8OTpKbpgStzAKONsmjNFjoAexkuXAc44w_iVNyRBQboLjuc22iSD27ZEjhVZVQZArE13KUwExmYJSzWhgDHYKncyq2tFlXqlZhPTLrqhT"/>
+</div>
+<div class="p-stack-md">
+<p class="font-label-bold text-label-sm text-surface-variant mb-1">FRUITS</p>
+<h4 class="font-label-bold text-label-bold text-on-surface">CYBER BERRY</h4>
+</div>
+<div class="absolute inset-0 bg-black/60 flex items-center justify-center play-overlay opacity-0">
+<button class="bg-primary text-on-primary font-label-bold text-label-bold px-stack-lg py-stack-sm scale-90 group-hover:scale-100 transition-transform">PLAY</button>
+</div>
+</div>
+<div class="group game-card relative overflow-hidden bg-surface-container border border-surface-variant hover:border-primary transition-all duration-300">
+<div class="aspect-[3/4] overflow-hidden">
+<img alt="Slot Game" class="w-full h-full object-cover grayscale-[0.8] group-hover:grayscale-0 group-hover:scale-110 transition-all duration-500" data-alt="Abstract cybernetic aesthetic with sharp geometric structures and glowing red circuitry paths. Deep black background with high-contrast white highlights. Minimalist yet aggressive design style emphasizing speed and precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_4Jd5HZjslj5fcgTrdIRELPoNKhJe6m-hjqHj5-fcEbCaVpUXBoGZMmxTRFlH7ePirEmltTOVo57ckOky18KfE6hoHQoVPoEjnWaaunpVSTaQq1djuyW84B2P5vQ-luDkZGb0VDWamg1pHjvsf1tTmUqkAtjnzpEey8g1HqyjNkndAftUD6EvJkfFHghXao06evtye-bUzPdHchS0E3vYQ5aaIpk9yAwRW2jT4zQLR2DuEz4E-VnjVizBgXEHvgzV9vVqrx4t-MP_"/>
+</div>
+<div class="p-stack-md">
+<p class="font-label-bold text-label-sm text-surface-variant mb-1">NEW</p>
+<h4 class="font-label-bold text-label-bold text-on-surface">PULSE RUNNER</h4>
+</div>
+<div class="absolute inset-0 bg-black/60 flex items-center justify-center play-overlay opacity-0">
+<button class="bg-primary text-on-primary font-label-bold text-label-bold px-stack-lg py-stack-sm scale-90 group-hover:scale-100 transition-transform">PLAY</button>
+</div>
+</div>
+<div class="group game-card relative overflow-hidden bg-surface-container border border-surface-variant hover:border-primary transition-all duration-300">
+<div class="aspect-[3/4] overflow-hidden">
+<img alt="Slot Game" class="w-full h-full object-cover grayscale-[0.8] group-hover:grayscale-0 group-hover:scale-110 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwQhSjjAnCBIz8smZ3dJJtJGbocl6ve3YS9O3gdBX2NUU0vIydEPiA-NAE_r1GKxQu53DslSi1GiU8RGkLpkQv5PyLI8VaWvvvnBWfhdkX4gxpof33t-ddVAfoRx9MO7_fdQlMXvBa9ly4VPHu4BaZYQe5LDib-xTbXGjxZTiNoeGtiCKgmyOxFU2OSAIk5FVdaBKbbhvz1LjHHSWA7w-L56Sf1nI9z7LcpjlfY1EdblDRxA_k4xS6eY9Dq3FgqeuA6SwptqNtDs2T"/>
+</div>
+<div class="p-stack-md">
+<p class="font-label-bold text-label-sm text-surface-variant mb-1">JACKPOT</p>
+<h4 class="font-label-bold text-label-bold text-on-surface">MEGA MOOLAH</h4>
+</div>
+<div class="absolute inset-0 bg-black/60 flex items-center justify-center play-overlay opacity-0">
+<button class="bg-primary text-on-primary font-label-bold text-label-bold px-stack-lg py-stack-sm scale-90 group-hover:scale-100 transition-transform">PLAY</button>
+</div>
+</div>
+<div class="group game-card relative overflow-hidden bg-surface-container border border-surface-variant hover:border-primary transition-all duration-300">
+<div class="aspect-[3/4] overflow-hidden">
+<img alt="Slot Game" class="w-full h-full object-cover grayscale-[0.8] group-hover:grayscale-0 group-hover:scale-110 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxqxgaXomcDX_x_uiXcLxIiI2Q6OsbTxqLiYCAL3btRcpQlMB-9Qkr2Z0YXm98oM06zZuy3JHSl3o74dnjwqWhDYlm2jP1ggl7gl5nK0Z2-xluuKuMWjCfv3i6rEfxSbLAZhRe6yJph7f0IyFGsAj3Y8dk8oEebeLJ0ee8OTpKbpgStzAKONsmjNFjoAexkuXAc44w_iVNyRBQboLjuc22iSD27ZEjhVZVQZArE13KUwExmYJSzWhgDHYKncyq2tFlXqlZhPTLrqhT"/>
+</div>
+<div class="p-stack-md">
+<p class="font-label-bold text-label-sm text-surface-variant mb-1">HOT</p>
+<h4 class="font-label-bold text-label-bold text-on-surface">STARBURST X</h4>
+</div>
+<div class="absolute inset-0 bg-black/60 flex items-center justify-center play-overlay opacity-0">
+<button class="bg-primary text-on-primary font-label-bold text-label-bold px-stack-lg py-stack-sm scale-90 group-hover:scale-100 transition-transform">PLAY</button>
+</div>
+</div>
+<div class="group game-card relative overflow-hidden bg-surface-container border border-surface-variant hover:border-primary transition-all duration-300">
+<div class="aspect-[3/4] overflow-hidden">
+<img alt="Slot Game" class="w-full h-full object-cover grayscale-[0.8] group-hover:grayscale-0 group-hover:scale-110 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6jUtgtcQr9LQ_9DozsJLXsv2a8KP2SIC34BSyKYS03O4Azvdkfb1tGGTENE1ytMvVHcPG_Nqf8upvPENBqA9wAqIrxwJZTFRiygWCERz8aPyjblYjCndUuR-_mwhen-R_MyIoHuSj16cpN6HQK2eveHWLRQt0rpNo680hVbBs6TSxfUeJItWOC9EEeFuvZi2K_u06TBr1yoW8Hu5XYxMSpoa5Jqa8aZEfoKGY81vdynZ_X1Aue7MJxlfv_MTidXd9tnAXgWYA-X5R"/>
+</div>
+<div class="p-stack-md">
+<p class="font-label-bold text-label-sm text-surface-variant mb-1">POPULAR</p>
+<h4 class="font-label-bold text-label-bold text-on-surface">WOLF GOLD</h4>
+</div>
+<div class="absolute inset-0 bg-black/60 flex items-center justify-center play-overlay opacity-0">
+<button class="bg-primary text-on-primary font-label-bold text-label-bold px-stack-lg py-stack-sm scale-90 group-hover:scale-100 transition-transform">PLAY</button>
+</div>
+</div>
+<div class="group game-card relative overflow-hidden bg-surface-container border border-surface-variant hover:border-primary transition-all duration-300">
+<div class="aspect-[3/4] overflow-hidden">
+<img alt="Slot Game" class="w-full h-full object-cover grayscale-[0.8] group-hover:grayscale-0 group-hover:scale-110 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_4Jd5HZjslj5fcgTrdIRELPoNKhJe6m-hjqHj5-fcEbCaVpUXBoGZMmxTRFlH7ePirEmltTOVo57ckOky18KfE6hoHQoVPoEjnWaaunpVSTaQq1djuyW84B2P5vQ-luDkZGb0VDWamg1pHjvsf1tTmUqkAtjnzpEey8g1HqyjNkndAftUD6EvJkfFHghXao06evtye-bUzPdHchS0E3vYQ5aaIpk9yAwRW2jT4zQLR2DuEz4E-VnjVizBgXEHvgzV9vVqrx4t-MP_"/>
+</div>
+<div class="p-stack-md">
+<p class="font-label-bold text-label-sm text-surface-variant mb-1">CLASSIC</p>
+<h4 class="font-label-bold text-label-bold text-on-surface">IMMORTAL ROMANCE</h4>
+</div>
+<div class="absolute inset-0 bg-black/60 flex items-center justify-center play-overlay opacity-0">
+<button class="bg-primary text-on-primary font-label-bold text-label-bold px-stack-lg py-stack-sm scale-90 group-hover:scale-100 transition-transform">PLAY</button>
+</div>
+</div></div>
+</section>
+<!-- WIN GO Section -->
+<section class="mb-stack-xl">
+<div class="flex items-center justify-between mb-stack-lg">
+<h2 class="font-headline-xl text-headline-xl-mobile md:text-headline-xl flex items-center gap-stack-sm">
+<span class="material-symbols-outlined text-primary" data-weight="fill">rocket_launch</span>
+            WIN GO
+        </h2>
+</div>
+<div class="max-w-4xl mx-auto">
+<div class="bg-surface-container border border-surface-variant rounded-xl overflow-hidden shadow-2xl relative">
+<!-- Header/Timer -->
+<div class="p-stack-md flex justify-between items-center bg-surface-container-high border-b border-surface-variant">
+<div>
+<h3 class="font-headline-md text-white">Big &amp; Small</h3>
+<p class="font-label-bold text-label-sm text-primary uppercase tracking-widest">Win Go</p>
+</div>
+<div class="text-right">
+<p class="text-label-sm text-on-surface-variant font-label-bold mb-1">NEXT ROUND IN</p>
+<div class="bg-background border border-primary px-4 py-2 rounded-lg">
+<span class="text-headline-md text-primary font-mono tabular-nums">00:45</span>
+</div>
+</div>
+</div>
+<div class="p-stack-lg space-y-stack-lg">
+<!-- Betting Zones -->
+<div class="grid grid-cols-2 gap-gutter">
+<button class="wingo-gradient-big group h-32 rounded-xl flex flex-col items-center justify-center border-2 border-transparent hover:border-white/50 transition-all shadow-lg active:scale-95">
+<span class="text-display-lg-mobile md:text-headline-xl font-black text-white drop-shadow-md">BIG</span>
+<span class="text-white/80 font-label-bold">1:2.0</span>
+</button>
+<button class="wingo-gradient-small group h-32 rounded-xl flex flex-col items-center justify-center border-2 border-transparent hover:border-white/50 transition-all shadow-lg active:scale-95">
+<span class="text-display-lg-mobile md:text-headline-xl font-black text-white drop-shadow-md">SMALL</span>
+<span class="text-white/80 font-label-bold">1:2.0</span>
+</button>
+</div>
+<!-- Number Betting -->
+<div>
+<p class="text-label-bold text-center text-on-surface-variant mb-stack-md uppercase tracking-widest">Select a Number (1:9.0)</p>
+<div class="flex flex-wrap justify-center gap-2 md:gap-4">
+<button class="wingo-number-btn w-10 h-10 md:w-12 md:h-12 rounded-full border border-surface-variant bg-surface-container-lowest flex items-center justify-center font-label-bold text-on-surface text-lg">0</button>
+<button class="wingo-number-btn w-10 h-10 md:w-12 md:h-12 rounded-full border border-surface-variant bg-surface-container-lowest flex items-center justify-center font-label-bold text-on-surface text-lg">1</button>
+<button class="wingo-number-btn w-10 h-10 md:w-12 md:h-12 rounded-full border border-surface-variant bg-surface-container-lowest flex items-center justify-center font-label-bold text-on-surface text-lg">2</button>
+<button class="wingo-number-btn w-10 h-10 md:w-12 md:h-12 rounded-full border border-surface-variant bg-surface-container-lowest flex items-center justify-center font-label-bold text-on-surface text-lg">3</button>
+<button class="wingo-number-btn w-10 h-10 md:w-12 md:h-12 rounded-full border border-surface-variant bg-surface-container-lowest flex items-center justify-center font-label-bold text-on-surface text-lg">4</button>
+<button class="wingo-number-btn w-10 h-10 md:w-12 md:h-12 rounded-full border border-surface-variant bg-surface-container-lowest flex items-center justify-center font-label-bold text-on-surface text-lg">5</button>
+<button class="wingo-number-btn w-10 h-10 md:w-12 md:h-12 rounded-full border border-surface-variant bg-surface-container-lowest flex items-center justify-center font-label-bold text-on-surface text-lg">6</button>
+<button class="wingo-number-btn w-10 h-10 md:w-12 md:h-12 rounded-full border border-surface-variant bg-surface-container-lowest flex items-center justify-center font-label-bold text-on-surface text-lg">7</button>
+<button class="wingo-number-btn w-10 h-10 md:w-12 md:h-12 rounded-full border border-surface-variant bg-surface-container-lowest flex items-center justify-center font-label-bold text-on-surface text-lg">8</button>
+<button class="wingo-number-btn w-10 h-10 md:w-12 md:h-12 rounded-full border border-surface-variant bg-surface-container-lowest flex items-center justify-center font-label-bold text-on-surface text-lg">9</button>
+</div>
+</div>
+<!-- Action Area -->
+<div class="pt-stack-md flex gap-stack-md">
+<div class="flex-1 bg-background border border-surface-variant rounded flex items-center px-4">
+<span class="text-surface-variant mr-2">$</span>
+<input class="w-full bg-transparent border-none focus:ring-0 text-white font-label-bold" placeholder="Bet Amount" type="number"/>
+</div>
+<button class="bg-primary-container text-on-primary-container px-12 py-3 font-label-bold uppercase tracking-widest rounded shadow-lg shadow-primary-container/20 hover:brightness-110 active:scale-95 transition-all">CONFIRM BET</button>
+</div>
+</div>
+<!-- Background Decoration -->
+<div class="absolute -right-12 -bottom-12 w-48 h-48 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute -left-12 -top-12 w-48 h-48 bg-tertiary/5 rounded-full blur-3xl pointer-events-none"></div>
+</div>
+</div>
+</section>
+<!-- Live Casino Horizontal Scroll -->
+<section class="mb-stack-xl">
+<div class="flex items-center justify-between mb-stack-lg">
+<h2 class="font-headline-xl text-headline-xl-mobile md:text-headline-xl flex items-center gap-stack-sm">
+<span class="material-symbols-outlined text-primary">sensors</span>
+                    LIVE CASINO
+                </h2>
+<div class="flex gap-stack-sm">
+<button class="w-10 h-10 border border-surface-variant flex items-center justify-center hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 border border-surface-variant flex items-center justify-center hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="flex gap-gutter overflow-x-auto pb-stack-lg custom-scrollbar snap-x">
+<!-- Live Card 1 -->
+<div class="flex-none w-72 md:w-80 group game-card relative overflow-hidden bg-surface-container border border-surface-variant hover:border-primary snap-start transition-all">
+<div class="relative h-48 overflow-hidden">
+<img alt="Live Dealer" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Professional live casino dealer at a sleek, minimalist blackjack table. The background is a dark studio with dramatic red spotlighting. High-key lighting on the dealer creates a crisp, premium look. The aesthetic is clean and modern, focusing on professional reliability and excitement." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZMZqbw-MFAjhMIEYCUIu9GhDEul8egMcR1_ZyVhE8ucicDPcKsr7VVIVNxH4HGsQYtyfZTTfVRlGMyDjF6qKu83kwuWzXvIpFh5G9wj_5QC0DCvfO2AntG7WraaVJJTrciU8GjVV2SdkQNLswVf6wIoldHOjsEsrxqbdRyJXTbCG6GEesPlMqSQCe3y5m8KAMObQcCyVKvaybbvxzXg1ZxPblaujqTo3dA_5UFTuVhHmQlLX92KWH1UZ6TsIO_9x3I8XFkitbjhVR"/>
+<div class="absolute top-3 left-3 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-red-600 animate-pulse"></span>
+<span class="bg-black/60 text-white font-label-bold text-[10px] px-2 py-1 backdrop-blur-sm">LIVE</span>
+</div>
+</div>
+<div class="p-stack-md">
+<h4 class="font-headline-md text-headline-md text-white mb-1">ROULETTE PRO</h4>
+<div class="flex justify-between items-center">
+<span class="text-label-sm font-label-bold text-surface-variant">MIN: $5</span>
+<span class="text-label-sm font-label-bold text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">group</span> 1.2k
+                            </span>
+</div>
+<div class="mt-stack-md play-overlay opacity-0">
+<button class="w-full bg-primary-container text-on-primary-container font-label-bold text-label-bold py-2 uppercase tracking-tighter">SIT IN</button>
+</div>
+</div>
+</div>
+<!-- Live Card 2 -->
+<div class="flex-none w-72 md:w-80 group game-card relative overflow-hidden bg-surface-container border border-surface-variant hover:border-primary snap-start transition-all">
+<div class="relative h-48 overflow-hidden">
+<img alt="Live Dealer" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A sophisticated baccarat table with professional dealer in a high-contrast, black and red themed studio. Soft, expensive-looking lighting highlights the card action. Minimalist surroundings with high-gloss surfaces. The atmosphere is quiet, intense, and high-stakes." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXO3LIk3GAAYBzACnrNR85ILKWtCAkeXiHtd_AR0_Uv6KCbMI3-zEfUDohZoYzJkracjZyeAKuV5kpRCY72pynt_Pt8-mjAWNIPvSm0Nl-LUiC5WC5QuORhbXwApoydQuFHN0hr8vn4JM2aTKZd8696C5AVC67zAarfSNpDQv868AeW5M1fuqMa26H6w2ToVhAwzdr6g2XQURsUlhcj-bvC3L085Y2Ksyt7NwR4DXDKvQCd8tNZYrMuWI1cG_Ay3PnAF4aZ7EdXsxv"/>
+<div class="absolute top-3 left-3 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-red-600 animate-pulse"></span>
+<span class="bg-black/60 text-white font-label-bold text-[10px] px-2 py-1 backdrop-blur-sm">LIVE</span>
+</div>
+</div>
+<div class="p-stack-md">
+<h4 class="font-headline-md text-headline-md text-white mb-1">ELITE BLACKJACK</h4>
+<div class="flex justify-between items-center">
+<span class="text-label-sm font-label-bold text-surface-variant">MIN: $50</span>
+<span class="text-label-sm font-label-bold text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">group</span> 842
+                            </span>
+</div>
+<div class="mt-stack-md play-overlay opacity-0">
+<button class="w-full bg-primary-container text-on-primary-container font-label-bold text-label-bold py-2 uppercase tracking-tighter">SIT IN</button>
+</div>
+</div>
+</div>
+<!-- Live Card 3 -->
+<div class="flex-none w-72 md:w-80 group game-card relative overflow-hidden bg-surface-container border border-surface-variant hover:border-primary snap-start transition-all">
+<div class="relative h-48 overflow-hidden">
+<img alt="Live Dealer" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Modern game show host in a vibrant, neon-lit digital studio. High-contrast colors dominated by deep blacks and electric red accents. The lighting is theatrical and dynamic, creating an immersive atmosphere for a premium entertainment experience." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRxRxje1lkiioGHAiHlw6zGGn9irXbNYCVOeYLbSxuY5FXTGpywLcT3Qb5GVG43dzqzEhSDRebFVuMvIfE6cAtHCo9JjwG5WPLgj2QdycHWszinFmJVhBhtrAP2lV4IwFwk6Rm0sI1O84rqdRmfC9G1yXOzla8hmInE52cJ62R2XZAihcyXmKAqt5s3Z0-gQS_MAGGQ9Yd1f8UXm9Lb7is3oTGoSocQBfiDeLICoVbbHTwp_XyVvR2UoZ9LHqeEySgE_JIksqtztWW"/>
+<div class="absolute top-3 left-3 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-red-600 animate-pulse"></span>
+<span class="bg-black/60 text-white font-label-bold text-[10px] px-2 py-1 backdrop-blur-sm">LIVE</span>
+</div>
+</div>
+<div class="p-stack-md">
+<h4 class="font-headline-md text-headline-md text-white mb-1">CRAZY WHEEL</h4>
+<div class="flex justify-between items-center">
+<span class="text-label-sm font-label-bold text-surface-variant">MIN: $1</span>
+<span class="text-label-sm font-label-bold text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">group</span> 5.4k
+                            </span>
+</div>
+<div class="mt-stack-md play-overlay opacity-0">
+<button class="w-full bg-primary-container text-on-primary-container font-label-bold text-label-bold py-2 uppercase tracking-tighter">SIT IN</button>
+</div>
+</div>
+</div>
+<!-- Live Card 4 -->
+<div class="flex-none w-72 md:w-80 group game-card relative overflow-hidden bg-surface-container border border-surface-variant hover:border-primary snap-start transition-all">
+<div class="relative h-48 overflow-hidden">
+<img alt="Live Dealer" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Dramatic, high-contrast shot of a poker table in a dark, high-end studio. Minimalist set design with focused overhead lighting on the green felt. Red accent lights line the background walls. Serious, professional, and competitive mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-UZ7uUgiAVxDGGbVjkzIsE2ioaY3tGJvx-wJipDp2NtO4xwW7hk9-fEUshz-biM0JYU5DSDoqyXehaKsdhShEa_1GaYGjW0cQbWmvE6S-EzwtoVjThXibuXDRdfeOsyxpprx6SxGbNzk9ZFRyDhR6l7ZWfvDNBE7rgX3c23pHAat_PBZ--R7tj1fqxq2BeUJkqQ-1NVftAzUKSmI2i0O-ptOb5dYc-Ku4jFe66NfYFLiJyT_-c2OfjrVe7eUV5sfUG4BknBBh4O-U"/>
+<div class="absolute top-3 left-3 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-red-600 animate-pulse"></span>
+<span class="bg-black/60 text-white font-label-bold text-[10px] px-2 py-1 backdrop-blur-sm">LIVE</span>
+</div>
+</div>
+<div class="p-stack-md">
+<h4 class="font-headline-md text-headline-md text-white mb-1">DRAGON TIGER</h4>
+<div class="flex justify-between items-center">
+<span class="text-label-sm font-label-bold text-surface-variant">MIN: $10</span>
+<span class="text-label-sm font-label-bold text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">group</span> 2.1k
+                            </span>
+</div>
+<div class="mt-stack-md play-overlay opacity-0">
+<button class="w-full bg-primary-container text-on-primary-container font-label-bold text-label-bold py-2 uppercase tracking-tighter">SIT IN</button>
+</div>
+</div>
+</div>
+<div class="flex-none w-72 md:w-80 group game-card relative overflow-hidden bg-surface-container border border-surface-variant hover:border-primary snap-start transition-all">
+<div class="relative h-48 overflow-hidden">
+<img alt="Live Dealer" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXO3LIk3GAAYBzACnrNR85ILKWtCAkeXiHtd_AR0_Uv6KCbMI3-zEfUDohZoYzJkracjZyeAKuV5kpRCY72pynt_Pt8-mjAWNIPvSm0Nl-LUiC5WC5QuORhbXwApoydQuFHN0hr8vn4JM2aTKZd8696C5AVC67zAarfSNpDQv868AeW5M1fuqMa26H6w2ToVhAwzdr6g2XQURsUlhcj-bvC3L085Y2Ksyt7NwR4DXDKvQCd8tNZYrMuWI1cG_Ay3PnAF4aZ7EdXsxv"/>
+<div class="absolute top-3 left-3 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-red-600 animate-pulse"></span>
+<span class="bg-black/60 text-white font-label-bold text-[10px] px-2 py-1 backdrop-blur-sm">LIVE</span>
+</div>
+</div>
+<div class="p-stack-md">
+<h4 class="font-headline-md text-headline-md text-white mb-1">BACCARAT SQUEEZE</h4>
+<div class="flex justify-between items-center">
+<span class="text-label-sm font-label-bold text-surface-variant">MIN: $25</span>
+<span class="text-label-sm font-label-bold text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">group</span> 431
+</span>
+</div>
+<div class="mt-stack-md play-overlay opacity-0">
+<button class="w-full bg-primary-container text-on-primary-container font-label-bold text-label-bold py-2 uppercase tracking-tighter">SIT IN</button>
+</div>
+</div>
+</div>
+<div class="flex-none w-72 md:w-80 group game-card relative overflow-hidden bg-surface-container border border-surface-variant hover:border-primary snap-start transition-all">
+<div class="relative h-48 overflow-hidden">
+<img alt="Live Dealer" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRxRxje1lkiioGHAiHlw6zGGn9irXbNYCVOeYLbSxuY5FXTGpywLcT3Qb5GVG43dzqzEhSDRebFVuMvIfE6cAtHCo9JjwG5WPLgj2QdycHWszinFmJVhBhtrAP2lV4IwFwk6Rm0sI1O84rqdRmfC9G1yXOzla8hmInE52cJ62R2XZAihcyXmKAqt5s3Z0-gQS_MAGGQ9Yd1f8UXm9Lb7is3oTGoSocQBfiDeLICoVbbHTwp_XyVvR2UoZ9LHqeEySgE_JIksqtztWW"/>
+<div class="absolute top-3 left-3 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-red-600 animate-pulse"></span>
+<span class="bg-black/60 text-white font-label-bold text-[10px] px-2 py-1 backdrop-blur-sm">LIVE</span>
+</div>
+</div>
+<div class="p-stack-md">
+<h4 class="font-headline-md text-headline-md text-white mb-1">MEGA WHEEL</h4>
+<div class="flex justify-between items-center">
+<span class="text-label-sm font-label-bold text-surface-variant">MIN: $0.10</span>
+<span class="text-label-sm font-label-bold text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">group</span> 8.9k
+</span>
+</div>
+<div class="mt-stack-md play-overlay opacity-0">
+<button class="w-full bg-primary-container text-on-primary-container font-label-bold text-label-bold py-2 uppercase tracking-tighter">SIT IN</button>
+</div>
+</div>
+</div>
+<div class="flex-none w-72 md:w-80 group game-card relative overflow-hidden bg-surface-container border border-surface-variant hover:border-primary snap-start transition-all">
+<div class="relative h-48 overflow-hidden">
+<img alt="Live Dealer" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZMZqbw-MFAjhMIEYCUIu9GhDEul8egMcR1_ZyVhE8ucicDPcKsr7VVIVNxH4HGsQYtyfZTTfVRlGMyDjF6qKu83kwuWzXvIpFh5G9wj_5QC0DCvfO2AntG7WraaVJJTrciU8GjVV2SdkQNLswVf6wIoldHOjsEsrxqbdRyJXTbCG6GEesPlMqSQCe3y5m8KAMObQcCyVKvaybbvxzXg1ZxPblaujqTo3dA_5UFTuVhHmQlLX92KWH1UZ6TsIO_9x3I8XFkitbjhVR"/>
+<div class="absolute top-3 left-3 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-red-600 animate-pulse"></span>
+<span class="bg-black/60 text-white font-label-bold text-[10px] px-2 py-1 backdrop-blur-sm">LIVE</span>
+</div>
+</div>
+<div class="p-stack-md">
+<h4 class="font-headline-md text-headline-md text-white mb-1">LIGHTNING DICE</h4>
+<div class="flex justify-between items-center">
+<span class="text-label-sm font-label-bold text-surface-variant">MIN: $0.20</span>
+<span class="text-label-sm font-label-bold text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">group</span> 1.5k
+</span>
+</div>
+<div class="mt-stack-md play-overlay opacity-0">
+<button class="w-full bg-primary-container text-on-primary-container font-label-bold text-label-bold py-2 uppercase tracking-tighter">SIT IN</button>
+</div>
+</div>
+</div>
+<div class="flex-none w-72 md:w-80 group game-card relative overflow-hidden bg-surface-container border border-surface-variant hover:border-primary snap-start transition-all">
+<div class="relative h-48 overflow-hidden">
+<img alt="Live Dealer" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-UZ7uUgiAVxDGGbVjkzIsE2ioaY3tGJvx-wJipDp2NtO4xwW7hk9-fEUshz-biM0JYU5DSDoqyXehaKsdhShEa_1GaYGjW0cQbWmvE6S-EzwtoVjThXibuXDRdfeOsyxpprx6SxGbNzk9ZFRyDhR6l7ZWfvDNBE7rgX3c23pHAat_PBZ--R7tj1fqxq2BeUJkqQ-1NVftAzUKSmI2i0O-ptOb5dYc-Ku4jFe66NfYFLiJyT_-c2OfjrVe7eUV5sfUG4BknBBh4O-U"/>
+<div class="absolute top-3 left-3 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-red-600 animate-pulse"></span>
+<span class="bg-black/60 text-white font-label-bold text-[10px] px-2 py-1 backdrop-blur-sm">LIVE</span>
+</div>
+</div>
+<div class="p-stack-md">
+<h4 class="font-headline-md text-headline-md text-white mb-1">CASINO HOLD'EM</h4>
+<div class="flex justify-between items-center">
+<span class="text-label-sm font-label-bold text-surface-variant">MIN: $5</span>
+<span class="text-label-sm font-label-bold text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">group</span> 622
+</span>
+</div>
+<div class="mt-stack-md play-overlay opacity-0">
+<button class="w-full bg-primary-container text-on-primary-container font-label-bold text-label-bold py-2 uppercase tracking-tighter">SIT IN</button>
+</div>
+</div>
+</div></div>
+</section>
+<!-- Table Games Section -->
+<section class="mb-stack-xl">
+<div class="flex items-center justify-between mb-stack-lg">
+<h2 class="font-headline-xl text-headline-xl-mobile md:text-headline-xl flex items-center gap-stack-sm">
+<span class="material-symbols-outlined text-primary">casino</span>
+                    TABLE GAMES
+                </h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<div class="flex gap-stack-md p-stack-md bg-surface-container border border-surface-variant hover:border-primary group transition-all">
+</div></div></section></main></body></html>

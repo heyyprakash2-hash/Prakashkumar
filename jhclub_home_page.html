@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>JHClub | Professional Gaming</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&amp;family=Hanken+Grotesk:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-tint": "#ffb3ad",
+                    "inverse-primary": "#c0001a",
+                    "surface-container-low": "#1b1b1b",
+                    "on-secondary-fixed-variant": "#454747",
+                    "on-background": "#e2e2e2",
+                    "tertiary-fixed": "#d1e4ff",
+                    "on-surface-variant": "#e7bdb9",
+                    "on-surface": "#e2e2e2",
+                    "on-tertiary-container": "#d8e8ff",
+                    "surface-dim": "#131313",
+                    "on-primary-fixed-variant": "#930011",
+                    "on-primary-container": "#ffdfdc",
+                    "on-tertiary": "#003258",
+                    "on-error-container": "#ffdad6",
+                    "background": "#131313",
+                    "on-secondary": "#2f3131",
+                    "tertiary": "#9ecaff",
+                    "surface-container": "#1f1f1f",
+                    "on-secondary-container": "#b4b5b5",
+                    "tertiary-fixed-dim": "#9ecaff",
+                    "surface-container-lowest": "#0e0e0e",
+                    "outline": "#ae8884",
+                    "primary": "#ffb3ad",
+                    "surface-container-high": "#2a2a2a",
+                    "error-container": "#93000a",
+                    "secondary-fixed-dim": "#c6c6c7",
+                    "secondary-container": "#454747",
+                    "on-error": "#690005",
+                    "on-primary-fixed": "#410003",
+                    "secondary": "#c6c6c7",
+                    "primary-fixed-dim": "#ffb3ad",
+                    "surface-variant": "#353535",
+                    "surface-container-highest": "#353535",
+                    "inverse-on-surface": "#303030",
+                    "primary-fixed": "#ffdad6",
+                    "on-primary": "#680009",
+                    "outline-variant": "#5d3f3c",
+                    "tertiary-container": "#006ab2",
+                    "primary-container": "#d0001d",
+                    "inverse-surface": "#e2e2e2",
+                    "on-tertiary-fixed-variant": "#00497d",
+                    "on-secondary-fixed": "#1a1c1c",
+                    "on-tertiary-fixed": "#001d36",
+                    "surface-bright": "#393939",
+                    "surface": "#131313",
+                    "secondary-fixed": "#e2e2e2",
+                    "error": "#ffb4ab"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0rem",
+                    "lg": "0rem",
+                    "xl": "0rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit": "8px",
+                    "margin-desktop": "64px",
+                    "gutter": "24px",
+                    "stack-sm": "8px",
+                    "stack-xl": "64px",
+                    "stack-lg": "32px",
+                    "stack-md": "16px",
+                    "container-max": "1280px",
+                    "margin-mobile": "20px"
+            },
+            "fontFamily": {
+                    "headline-xl": ["Playfair Display"],
+                    "display-lg": ["Playfair Display"],
+                    "headline-xl-mobile": ["Playfair Display"],
+                    "display-lg-mobile": ["Playfair Display"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "body-md": ["Hanken Grotesk"],
+                    "headline-md": ["Playfair Display"],
+                    "label-bold": ["Hanken Grotesk"],
+                    "label-sm": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "headline-xl": ["40px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "display-lg": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "900"}],
+                    "headline-xl-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "display-lg-mobile": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "900"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                    "label-bold": ["14px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "1", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .text-stroke-primary {
+            -webkit-text-stroke: 1px #ffb3ad;
+            color: transparent;
+        }
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-scroll {
+            animation: scroll 30s linear infinite;
+        }
+        .game-card:hover .game-overlay {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="w-full top-0 sticky z-50 bg-background border-b border-surface-variant h-20">
+<div class="max-w-container-max mx-auto px-margin-desktop flex justify-between items-center h-full">
+<div class="font-display-lg text-headline-xl uppercase tracking-tighter text-primary">JHCLUB</div>
+<nav class="hidden md:flex items-center gap-gutter">
+<a class="font-label-bold text-label-bold text-primary border-b-2 border-primary pb-1 transition-colors duration-200" href="#">Home</a>
+<a class="font-label-bold text-label-bold text-on-background hover:text-primary transition-colors duration-200" href="#">Games</a>
+<a class="font-label-bold text-label-bold text-on-background hover:text-primary transition-colors duration-200" href="#">Rewards</a>
+<a class="font-label-bold text-label-bold text-on-background hover:text-primary transition-colors duration-200" href="#">Support</a>
+</nav>
+<div class="flex items-center gap-stack-md">
+<button class="font-label-bold text-label-bold px-stack-lg py-stack-sm text-on-surface hover:text-white opacity-80 hover:opacity-100 transition-all">Login</button>
+<button class="bg-primary-container text-on-primary-container font-label-bold text-label-bold px-stack-lg py-stack-sm uppercase scale-105 active:scale-95 transition-transform">Register</button>
+</div>
+</div>
+</header>
+<!-- Hero Section -->
+<section class="relative w-full min-h-[819px] flex items-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover opacity-40" data-alt="A cinematic high-action gaming scene featuring a futuristic esports arena with intense red neon lighting and dynamic light streaks. The environment is dark and professional, characterized by deep blacks and sharp white highlights that emphasize a premium gaming atmosphere. Professional gamers are silhouetted against glowing screens, creating a high-energy, competitive mood that matches a bold red and black color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJ9XQ6DDj5Qm6jbLtk0Cd-bC3FgCSTANItsgrwB1ArHALYZIC4-ey2G5dhd_m1RIBpxDfmdTfz0SJcxB0B-g-FkuFEJoC0m0AcT7pfwyIaSK7es5lLz2rNwA6qLWD1gWyRwDjw2yyATuzn1hWdNoDEg-PdxCzsUv0O58vCaPEsMh-rE-BBms4Lls0VwwzYi2BDp76-RZBWG9obBuejbiFld0C2mQeQWxmDuiZbzBIdSmiX6qwYkfZ7IwFAp1VStoUGglEG40QU47xW"/>
+<div class="absolute inset-0 bg-gradient-to-r from-background via-transparent to-transparent"></div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-desktop relative z-10 w-full">
+<div class="max-w-3xl">
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg uppercase mb-stack-md">
+                    Level Up <br/> <span class="text-primary">The Arena.</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-stack-xl max-w-xl">
+                    Experience professional-grade gaming performance and exclusive tournaments. JHClub is where champions are forged and legends are rewarded.
+                </p>
+<div class="flex flex-col sm:flex-row gap-gutter">
+<button class="bg-primary-container text-on-primary-container font-label-bold text-headline-md px-10 py-5 uppercase hover:bg-primary transition-all active:scale-95">
+                        Join Now
+                    </button>
+<button class="border-2 border-on-surface text-on-surface font-label-bold text-headline-md px-10 py-5 uppercase hover:bg-on-surface hover:text-background transition-all">
+                        Explore Games
+                    </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Recent Winners Ticker -->
+<div class="bg-surface-container-high border-y border-surface-variant overflow-hidden py-4">
+<div class="flex animate-scroll whitespace-nowrap">
+<div class="flex items-center gap-12 px-6">
+<span class="font-label-bold text-primary">LATEST WINNERS:</span>
+<span class="flex items-center gap-2"><span class="text-on-surface-variant">@GhostHunter</span> <span class="text-primary font-label-bold">$12,400</span> <span class="material-symbols-outlined text-sm">trophy</span></span>
+<span class="flex items-center gap-2"><span class="text-on-surface-variant">@ProPlayer_99</span> <span class="text-primary font-label-bold">$8,250</span> <span class="material-symbols-outlined text-sm">trophy</span></span>
+<span class="flex items-center gap-2"><span class="text-on-surface-variant">@CrimsonKing</span> <span class="text-primary font-label-bold">$22,100</span> <span class="material-symbols-outlined text-sm">trophy</span></span>
+<span class="flex items-center gap-2"><span class="text-on-surface-variant">@ViperStrike</span> <span class="text-primary font-label-bold">$5,000</span> <span class="material-symbols-outlined text-sm">trophy</span></span>
+</div>
+<!-- Duplicated for seamless loop -->
+<div class="flex items-center gap-12 px-6">
+<span class="font-label-bold text-primary">LATEST WINNERS:</span>
+<span class="flex items-center gap-2"><span class="text-on-surface-variant">@GhostHunter</span> <span class="text-primary font-label-bold">$12,400</span> <span class="material-symbols-outlined text-sm">trophy</span></span>
+<span class="flex items-center gap-2"><span class="text-on-surface-variant">@ProPlayer_99</span> <span class="text-primary font-label-bold">$8,250</span> <span class="material-symbols-outlined text-sm">trophy</span></span>
+<span class="flex items-center gap-2"><span class="text-on-surface-variant">@CrimsonKing</span> <span class="text-primary font-label-bold">$22,100</span> <span class="material-symbols-outlined text-sm">trophy</span></span>
+<span class="flex items-center gap-2"><span class="text-on-surface-variant">@ViperStrike</span> <span class="text-primary font-label-bold">$5,000</span> <span class="material-symbols-outlined text-sm">trophy</span></span>
+</div>
+</div>
+</div>
+<!-- Featured Games Section -->
+<section class="max-w-container-max mx-auto px-margin-desktop py-stack-xl">
+<div class="flex justify-between items-end mb-stack-xl">
+<div>
+<h2 class="font-headline-xl text-headline-xl-mobile md:text-headline-xl uppercase">Featured <span class="text-stroke-primary">Games</span></h2>
+<div class="h-1 w-24 bg-primary mt-2"></div>
+</div>
+<a class="text-primary font-label-bold flex items-center gap-2 hover:translate-x-1 transition-transform" href="#">
+                VIEW ALL <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Game Card 1 -->
+<div class="game-card group relative bg-surface-container border border-surface-variant transition-all duration-300 hover:border-primary cursor-pointer h-[450px] overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A high-contrast digital art close-up of a futuristic warrior character holding a glowing red energy weapon. The lighting is intense and focused, with deep shadows emphasizing the metallic armor textures. The scene is dominated by a black background and vibrant red accents, following a professional and aggressive gaming aesthetic suitable for a premier esports card." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJY01m5Yr3pnQCmvL19qZtlmx88MzXj2SC6Girm71XSQiwj3pFwBVAxlb6AbmH-uE5zIcl0vIqA4R1YwL7OltWA2OsbNxKXHfXJFQNiiyslJJL9IhMzfJ6hgFvmTFpyKQ9yinsEFJLxf6Nxf-nv6WK_apC5ZYgueWeGVbh4r-Wi7YIwamKhzEPUo4QDY2QmpF5MuE5hT2-2pVvmBzxSGyJZ_rvDZZ-FWDBl8eg8AiTjrlpC7BHoIcEXAR735vWZLpkyj-ZkkPiTT1h"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+<div class="absolute bottom-0 left-0 right-0 p-stack-lg">
+<div class="inline-block bg-black border border-surface-variant px-3 py-1 mb-3">
+<span class="font-label-sm text-label-sm text-white uppercase">Live Tournament</span>
+</div>
+<h3 class="font-headline-md text-headline-md uppercase text-white mb-2">Shadow Siege</h3>
+<p class="font-body-md text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity duration-300">Join 12,000 players competing for the $50k grand prize.</p>
+</div>
+</div>
+<!-- Game Card 2 -->
+<div class="game-card group relative bg-surface-container border border-surface-variant transition-all duration-300 hover:border-primary cursor-pointer h-[450px] overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A high-tech digital interface of a tactical command center, featuring glowing red data charts and complex geometric patterns. The lighting is low-key, emphasizing the luminescent red displays against a dark, mechanical background. This creates a sophisticated, data-driven gaming atmosphere that feels both urgent and professional, utilizing a sleek red and black color scheme." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJpUt6LlUX5jPTl5F0OhSsHl6rLv9iVJHOETHVfMHySt20ZwbcuQ4g_NRC-dWj1guU4dS1jJMmRxMBaGNhSCX7MtPkBahU0rnZXMgMmxapVEWJaVDUUTZmxBK3pKAXr-Yw6x7tHViyxZUen8P5TLFVC_fwRM5JrM4seukhB2IDjTSEpAd7QNGIeOV-HFBFNfprm_idvlOTeuL6_0m5FZJtyIjKXlwl0KxLq5RVi0My04g2Tnmysmqp6RCahioUNq2aaboRb3slCJIW"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+<div class="absolute bottom-0 left-0 right-0 p-stack-lg">
+<div class="inline-block bg-black border border-surface-variant px-3 py-1 mb-3">
+<span class="font-label-sm text-label-sm text-white uppercase">New Arrival</span>
+</div>
+<h3 class="font-headline-md text-headline-md uppercase text-white mb-2">Tactical Command</h3>
+<p class="font-body-md text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity duration-300">Strategic warfare redefined. Master the grid to win big.</p>
+</div>
+</div>
+<!-- Game Card 3 -->
+<div class="game-card group relative bg-surface-container border border-surface-variant transition-all duration-300 hover:border-primary cursor-pointer h-[450px] overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A hyper-realistic 3D render of a futuristic sports car racing through a dark urban tunnel illuminated by red laser lights. The scene is full of motion blur and high-speed energy, with the car's sleek metallic surface reflecting vibrant red neon glows. The overall aesthetic is dark, premium, and fast-paced, aligning with a high-stakes competitive gaming environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTtVkJMy-cvahf3a2fXfGeO-WFQKg8Sxbdb_AcvL5hB9WO6oedMgAdtgfPgcyRBiZXfvhG1ZymmCQj8ju6pEldT_6-nwcKz1YYMj3NeyoF-bRKWLk_jDm2HrZdHCLSnoAKzmrOFK7cv6i2kxx6e-PtGev_ZGkrSlZhnXHnHaVPnkplHqJYhPBBOMZmERPORMFI91JBnMxOCN6m26QMY7osSXluWFFxvZcj3afP1ZuvjmM5Ay7kn2rGbCNMM_tmO_GwsvwRNzuhq_WN"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+<div class="absolute bottom-0 left-0 right-0 p-stack-lg">
+<div class="inline-block bg-black border border-surface-variant px-3 py-1 mb-3">
+<span class="font-label-sm text-label-sm text-white uppercase">Hot</span>
+</div>
+<h3 class="font-headline-md text-headline-md uppercase text-white mb-2">Neon Velocity</h3>
+<p class="font-body-md text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity duration-300">High-speed races with real-time betting stakes.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Why Choose JHClub Section -->
+<section class="bg-surface-container-lowest py-stack-xl">
+<div class="max-w-container-max mx-auto px-margin-desktop">
+<div class="text-center mb-20">
+<h2 class="font-display-lg text-headline-xl uppercase mb-4">Why <span class="text-primary">JHCLUB?</span></h2>
+<p class="font-body-lg text-on-surface-variant max-w-2xl mx-auto">We provide the most secure, high-octane environment for competitive gaming professionals.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<div class="p-stack-lg border border-surface-variant bg-background group hover:border-primary transition-colors">
+<span class="material-symbols-outlined text-primary text-4xl mb-6">shield_lock</span>
+<h4 class="font-headline-md text-headline-md uppercase mb-3">Elite Safety</h4>
+<p class="font-body-md text-on-surface-variant">Bank-grade encryption protecting your assets and data 24/7.</p>
+</div>
+<div class="p-stack-lg border border-surface-variant bg-background group hover:border-primary transition-colors">
+<span class="material-symbols-outlined text-primary text-4xl mb-6">bolt</span>
+<h4 class="font-headline-md text-headline-md uppercase mb-3">Instant Payouts</h4>
+<p class="font-body-md text-on-surface-variant">Your winnings delivered at lightning speed with zero delays.</p>
+</div>
+<div class="p-stack-lg border border-surface-variant bg-background group hover:border-primary transition-colors">
+<span class="material-symbols-outlined text-primary text-4xl mb-6">groups</span>
+<h4 class="font-headline-md text-headline-md uppercase mb-3">Elite Community</h4>
+<p class="font-body-md text-on-surface-variant">Connect and compete with the world's top-tier gaming professionals.</p>
+</div>
+<div class="p-stack-lg border border-surface-variant bg-background group hover:border-primary transition-colors">
+<span class="material-symbols-outlined text-primary text-4xl mb-6">redeem</span>
+<h4 class="font-headline-md text-headline-md uppercase mb-3">Pro Rewards</h4>
+<p class="font-body-md text-on-surface-variant">Exclusive loyalty tiers and high-stakes tournament access.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Leaderboard / Stats Section -->
+<section class="max-w-container-max mx-auto px-margin-desktop py-stack-xl">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-stack-xl">
+<!-- Stats -->
+<div class="flex flex-col justify-center">
+<h2 class="font-headline-xl text-headline-xl uppercase mb-10">THE <span class="text-stroke-primary">POWER</span> IN NUMBERS</h2>
+<div class="grid grid-cols-2 gap-gutter">
+<div class="border-l-4 border-primary pl-6 py-4">
+<div class="text-5xl font-display-lg text-white mb-1">500K+</div>
+<div class="font-label-bold text-on-surface-variant uppercase">Active Players</div>
+</div>
+<div class="border-l-4 border-primary pl-6 py-4">
+<div class="text-5xl font-display-lg text-white mb-1">$2M+</div>
+<div class="font-label-bold text-on-surface-variant uppercase">Monthly Payouts</div>
+</div>
+<div class="border-l-4 border-primary pl-6 py-4">
+<div class="text-5xl font-display-lg text-white mb-1">200+</div>
+<div class="font-label-bold text-on-surface-variant uppercase">Pro Titles</div>
+</div>
+<div class="border-l-4 border-primary pl-6 py-4">
+<div class="text-5xl font-display-lg text-white mb-1">24/7</div>
+<div class="font-label-bold text-on-surface-variant uppercase">Live Support</div>
+</div>
+</div>
+</div>
+<!-- Leaderboard List -->
+<div class="bg-surface-container p-stack-lg border border-surface-variant">
+<h3 class="font-headline-md text-headline-md uppercase mb-6 flex justify-between items-center">
+                    Top Performers
+                    <span class="text-primary text-sm font-label-bold">THIS WEEK</span>
+</h3>
+<div class="space-y-4">
+<div class="flex items-center justify-between py-4 border-b border-surface-variant">
+<div class="flex items-center gap-4">
+<span class="font-headline-md text-primary text-2xl italic">01</span>
+<div class="w-10 h-10 bg-surface-variant border border-on-surface-variant rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined">person</span>
+</div>
+<span class="font-label-bold text-white uppercase">VortexGamer</span>
+</div>
+<span class="font-headline-md text-primary">$45,000</span>
+</div>
+<div class="flex items-center justify-between py-4 border-b border-surface-variant">
+<div class="flex items-center gap-4">
+<span class="font-headline-md text-primary text-2xl italic">02</span>
+<div class="w-10 h-10 bg-surface-variant border border-on-surface-variant rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined">person</span>
+</div>
+<span class="font-label-bold text-white uppercase">CyberQueen</span>
+</div>
+<span class="font-headline-md text-primary">$32,150</span>
+</div>
+<div class="flex items-center justify-between py-4 border-b border-surface-variant">
+<div class="flex items-center gap-4">
+<span class="font-headline-md text-primary text-2xl italic">03</span>
+<div class="w-10 h-10 bg-surface-variant border border-on-surface-variant rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined">person</span>
+</div>
+<span class="font-label-bold text-white uppercase">PixelBeast</span>
+</div>
+<span class="font-headline-md text-primary">$28,900</span>
+</div>
+<div class="flex items-center justify-between py-4">
+<div class="flex items-center gap-4">
+<span class="font-headline-md text-on-surface-variant text-2xl italic">04</span>
+<div class="w-10 h-10 bg-surface-variant border border-on-surface-variant rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined">person</span>
+</div>
+<span class="font-label-bold text-white uppercase">Apex_Stryker</span>
+</div>
+<span class="font-headline-md text-white">$15,400</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full pt-stack-xl pb-stack-lg bg-surface-container-lowest border-t border-surface-variant">
+<div class="max-w-container-max mx-auto px-margin-desktop grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<div class="flex flex-col gap-stack-md">
+<div class="font-headline-xl text-headline-xl text-on-surface">JHCLUB</div>
+<p class="font-body-md text-on-surface-variant max-w-sm">
+                    The ultimate destination for professional gaming, high-stakes tournaments, and elite player rewards. Join the club today.
+                </p>
+<div class="flex gap-stack-md mt-4">
+<a class="w-10 h-10 flex items-center justify-center border border-surface-variant hover:border-primary transition-colors text-on-surface" href="#">
+<span class="material-symbols-outlined">public</span>
+</a>
+<a class="w-10 h-10 flex items-center justify-center border border-surface-variant hover:border-primary transition-colors text-on-surface" href="#">
+<span class="material-symbols-outlined">group</span>
+</a>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-gutter">
+<div class="flex flex-col gap-stack-md">
+<span class="font-label-bold text-white uppercase tracking-widest">Navigation</span>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-white transition-colors" href="#">Home</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-white transition-colors" href="#">Games</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-white transition-colors" href="#">Rewards</a>
+</div>
+<div class="flex flex-col gap-stack-md">
+<span class="font-label-bold text-white uppercase tracking-widest">Support</span>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-white transition-colors" href="#">Contact Us</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-white transition-colors" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-white transition-colors" href="#">Terms of Service</a>
+</div>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-desktop mt-stack-xl pt-stack-md border-t border-surface-variant flex flex-col md:flex-row justify-between items-center gap-stack-md">
+<span class="font-label-sm text-label-sm text-on-surface-variant">© 2024 JHClub Professional Gaming. All Rights Reserved.</span>
+<div class="flex gap-gutter">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Responsible Gaming</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">18+ ONLY</span>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interactions for buttons
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mouseenter', () => {
+                // Potential for lightweight particle effect or ripple
+            });
+        });
+
+        // Sticky header opacity shift on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('bg-background/95', 'backdrop-blur-md');
+            } else {
+                header.classList.remove('bg-background/95', 'backdrop-blur-md');
+            }
+        });
+    </script>
+</body></html>
